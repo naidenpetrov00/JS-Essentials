@@ -6,10 +6,10 @@ function solve(numOne, numTwo, operator) {
     let divide = function (numOne, numTwo) { return numOne / numTwo }
 
     switch (operator) {
-        case '+': calc(numOne, numTwo, add);
-        case '-': calc(numOne, numTwo, substract);
-        case '*': calc(numOne, numTwo, multiply);
-        case '/': calc(numOne, numTwo, divide);
+        case '+': return calc(numOne, numTwo, add);
+        case '-': return calc(numOne, numTwo, substract);
+        case '*': return calc(numOne, numTwo, multiply);
+        case '/': return calc(numOne, numTwo, divide);
     }
 }
 
