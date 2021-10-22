@@ -1,5 +1,14 @@
-function solve(params) {
-    
+function solve(foods) {
+    let menu = {};
+
+    for (let i = 0; i < foods.length; i++) {
+
+        if (i % 2 === 0) {
+            menu[foods[i]] = +foods[i + 1];
+        }
+    }
+
+    console.log(menu);
 }
 
-solve(['Yoghurt', 48, 'Rise', 138, 'Apple', 52])
+solve(['Potato', 93, 'Skyr', 63, 'Cucumber', 18, 'Milk', 42])
