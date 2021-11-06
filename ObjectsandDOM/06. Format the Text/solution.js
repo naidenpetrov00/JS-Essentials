@@ -20,5 +20,11 @@ function solve() {
 
     formatedSentences.push(currSentences);
 
-    console.log(formatedSentences[2]);
+    let outputElement = document.getElementById("output");
+
+    for (const iterator of formatedSentences) {
+        let paragraphElement = document.createElement("p");
+        paragraphElement.textContent = iterator;
+        outputElement.appendChild(paragraphElement);
+    }
 }
