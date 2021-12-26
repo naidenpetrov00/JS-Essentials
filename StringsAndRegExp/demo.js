@@ -1,7 +1,7 @@
 function solve(input) {
-    
-    let split = input.toLowerCase()
-    .split(' ')
-    .filter(a => !a);
-
+    console.log(demo());
 }
+function demo() {
+    return true && false;
+}
+solve();
