@@ -8,19 +8,30 @@ function solve() {
     }
 
     const phoneNumberExtract = (user) => {
-        const pattern = 
+        const pattern = /(\+359 \d \d{3} \d{3})|(\+359-\d-\d{3}-\d{3})/;
+        const match = user.match(pattern);
+        return match && match[0];
     }
 
     const emailExtract = (user) => {
-        const pattern = //;
+        const pattern = / [a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
         const match = user.match(pattern);
         return match && match[0];
     }
 
     users.forEach(user => {
-        console.log(nameExtract(user));
-        console.log(phoneNumberExtract(user));
-        console.log(emailExtract(user));
-    }
+        const name = nameExtract(user);
+        const phoneNumber = phoneNumberExtract(user);
+        const email = emailExtract(user);
+
+        if(!name || !phoneNumber || !email){
+            console.log('Invalid data');
+            return;
+        }
+
+        console.log(name);
+        console.log(phoneNumber);
+        console.log(email);
+    });
 
 }
