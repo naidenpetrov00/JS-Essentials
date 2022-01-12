@@ -10,10 +10,6 @@ function solve(input) {
     const [JSFundamentalsCourseActivity, JSAdvancedCourseActivity, JSApplicationsCourseActivity] = input.slice(0, 3);
     const educationForm = input[input.length - 1];
 
-    // let [JSFundamentals, JSAdvanced, JSApplications] = [[JSFundamentalsCourseActivity, JSFundamentalsCoursePrice],
-    // [JSAdvancedCourseActivity, JSAdvancedCoursePrice],
-    // [JSApplicationsCourseActivity, JSApplicationsCoursePrice]];
-
     const coursesInformation = {
         JSFundamentals: [JSFundamentalsCourseActivity, JSFundamentalsCoursePrice],
         JSAdvanced: [JSAdvancedCourseActivity, JSAdvancedCoursePrice],
@@ -39,7 +35,6 @@ function solve(input) {
     const priceCalculator = () => {
         let price = 0;
         for (const course in coursesInformation) {
-            console.log(coursesInformation[course]);
             if (coursesInformation[course][0]) {
                 price += coursesInformation[course][1];
             }
@@ -50,7 +45,6 @@ function solve(input) {
     const totalPrice = priceCalculator();
 
     console.log(totalPrice);
-
 }
 
 solve(
