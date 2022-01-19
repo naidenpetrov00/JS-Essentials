@@ -10,7 +10,7 @@ function getData() {
 	const peopleOutELement = document.querySelector("#peopleOut p");
 	const blacklistELement = document.querySelector("#blacklist p");
 
-	const sortInfo = textAreaElementValue.slice(textAreaElementValue.length - 1)[0];
+	const sortInfo = textAreaElementValue.splice(textAreaElementValue.length - 1)[0];
 
 	let peopleLists = {
 		peopleIn: [],
@@ -20,24 +20,26 @@ function getData() {
 
 	textAreaElementValue.forEach(person => {
 
-		if (person[actionProperty] === peopleInAction) {
+		if (person[actionProperty] === peopleInAction &&
+			peopleLists['blacklist'].includes) {
 			const personCopy = { ...person };
 			delete personCopy[actionProperty];
 
-			peopleLists.peopleIn.push(JSON.stringify(personCopy));
+			peopleLists['peopleIn'].push(JSON.stringify(personCopy));
 		}
 		else if (person[actionProperty] === peopleOutAction) {
 			peopleInChecker(person);
 		}
 		else if (person[actionProperty] === blackListAction) {
-
-			if (!peopleInChecker(person)) {
-				peopleLists.blacklist.push(JSON.stringify(person));
+			if (peopleInChecker(person)) {
+			}
+			else {
+				peopleLists['blacklist'].push(JSON.stringify(person));
 			}
 		}
 
 	})
-	//
+
 	console.log(peopleLists);
 
 	if (sortInfo[actionProperty] !== '' && sortInfo[criteriaProperty] !== '') {
@@ -45,12 +47,25 @@ function getData() {
 	}
 
 	function peopleInChecker(person) {
-
 		for (let i = 0; i < peopleLists.peopleIn.length; i++) {
 
-			if (peopleLists.peopleIn[i].includes(person[firstNameProperty]) && peopleLists.peopleIn[i].includes(person[lastNameProperty])) {
-				peopleLists.peopleOut.push(peopleIn[i])
-				peopleLists.peopleIn.splice(i, 1);
+			if (peopleLists['peopleIn'][i].includes(person[firstNameProperty]) && peopleLists['peopleIn'][i].includes(person[lastNameProperty])) {
+				peopleLists['peopleOut'].push(peopleLists['peopleIn'][i]);
+				peopleLists['peopleIn'].splice(i, 1)
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	function blacklistChecker(person) {
+		for (let i = 0; i < peopleLists.peopleIn.length; i++) {
+
+			if (peopleLists['peopleIn'][i].includes(person[firstNameProperty]) && peopleLists['peopleIn'][i].includes(person[lastNameProperty])) {
+				peopleLists['peopleOut'].push(peopleLists['peopleIn'][i]);
+				peopleLists['peopleIn'].splice(i, 1)
 
 				return true;
 			}
