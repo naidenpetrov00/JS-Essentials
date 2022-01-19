@@ -12,9 +12,11 @@ function getData() {
 
 	const sortInfo = textAreaElementValue.slice(textAreaElementValue.length - 1)[0];
 
-	let peopleInList = [];
-	let peopleOutList = [];
-	let blacklistList = [];
+	let peopleLists = {
+		peopleIn: [],
+		peopleOut: [],
+		blacklist: []
+	};
 
 	textAreaElementValue.forEach(person => {
 
@@ -22,7 +24,7 @@ function getData() {
 			const personCopy = { ...person };
 			delete personCopy[actionProperty];
 
-			peopleInList.push(JSON.stringify(personCopy));
+			peopleLists.peopleIn.push(JSON.stringify(personCopy));
 		}
 		else if (person[actionProperty] === peopleOutAction) {
 			peopleInChecker(person);
@@ -30,19 +32,25 @@ function getData() {
 		else if (person[actionProperty] === blackListAction) {
 
 			if (!peopleInChecker(person)) {
-				blacklistList.push(JSON.stringify(person));
+				peopleLists.blacklist.push(JSON.stringify(person));
 			}
 		}
 
 	})
+	//
+	console.log(peopleLists);
+
+	if (sortInfo[actionProperty] !== '' && sortInfo[criteriaProperty] !== '') {
+		sorter();
+	}
 
 	function peopleInChecker(person) {
 
-		for (let i = 0; i < peopleInList.length; i++) {
+		for (let i = 0; i < peopleLists.peopleIn.length; i++) {
 
-			if (peopleInList[i].includes(person[firstNameProperty]) && peopleInList[i].includes(person[lastNameProperty])) {
-				peopleOutList.push(peopleInList[i])
-				peopleInList.splice(i, 1);
+			if (peopleLists.peopleIn[i].includes(person[firstNameProperty]) && peopleLists.peopleIn[i].includes(person[lastNameProperty])) {
+				peopleLists.peopleOut.push(peopleIn[i])
+				peopleLists.peopleIn.splice(i, 1);
 
 				return true;
 			}
@@ -51,7 +59,7 @@ function getData() {
 		return false;
 	}
 
-	function sorter(list) {
+	function sorter() {
 
 	}
 }
