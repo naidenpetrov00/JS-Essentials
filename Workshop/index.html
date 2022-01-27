@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoftUni Invaders</title>
+    <link rel="stylesheet" href="styles/game.css">
+</head>
+
+<body>
+    <div id="game-container"></div>
+    <script src="./scripts/game.js"></script>
+    <script>
+        const { game } = window;
+        // const game = window.game;
+        game.init('#game-container', 1480, 700)
+            .start();
+    </script>
+</body>
+
+</html>
