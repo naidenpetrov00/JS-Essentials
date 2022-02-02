@@ -8,11 +8,12 @@
     const clear = function () {
         const { ctx } = this;
         const { width, height } = this.bounds;
-        ctx.clearReact(0, 0, width, height);
+        ctx.clearRect(0, 0, width, height);
     };
 
     const rendererDot = function (left, top) {
         const { ctx } = this;
+        this.
         ctx.fillRect(left, top, 15, 15);
     };
 
@@ -50,13 +51,13 @@
         const { left, top } = dot;
         
         this.renderer.rendererDot(left, top);
-        dot.left += 5; 
+        dot.left += 5;
         setTimeout(() => {
             this.gameLoop();
         }, 100);
     };
 
-    const start = function () 
+    const start = function () {
         this.gameLoop();
     };
 
